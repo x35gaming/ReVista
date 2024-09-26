@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=ReVista-dark
+Comment=Darkened Windows Vista UI for Linux OSes
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=ReVista-dark
+MetacityTheme=ReVista-dark
+IconTheme=Windows 7
+CursorTheme=DMZ-black
+ButtonLayout=menu:minimize,maximize,close

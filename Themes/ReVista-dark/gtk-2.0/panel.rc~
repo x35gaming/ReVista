@@ -1,0 +1,484 @@
+#############################################################
+#SLICKNESS PANEL SETTINGS
+#############################################################
+
+#############################################################
+#THIS FIXES THE STANDARD SHUTDOWN-DIALOG ON GNOME
+#############################################################
+
+style "fix"
+{
+xthickness = 0
+ythickness = 0
+bg_pixmap[NORMAL] = "Other/back.png"
+}
+
+class "*Panel*" style "fix"
+
+
+#############################################################
+
+style "panel"
+{
+
+	GtkWidget 	::shadow-type       = GTK_SHADOW_NONE #this is not working
+
+xthickness = 0
+ythickness = 0
+
+  	fg[NORMAL]			= "#d7d7d7" #TEXT ON NORMAL PANEL BUTTONS
+  	fg[PRELIGHT]			= "#ffffff" #TEXT ON MOUSEOVERED PANEL BUTTONS
+  	fg[ACTIVE]			= "#f0f0f0" #TEXT ON ACTIVE PANEL BUTTON
+  	fg[SELECTED]			= "#000000"
+  	fg[INSENSITIVE]			= "#6B6B6B"
+	bg[NORMAL]			= "#0d0d0d" #"#0D0D0D"
+  	bg[SELECTED]			= "#3d3d3d"
+	bg_pixmap[NORMAL] 		= "Panel/panel-bg.png"
+	bg_pixmap[PRELIGHT] 		= "Panel/panel-bg.png"
+	bg_pixmap[ACTIVE] 		= "Panel/panel-bg.png"
+	bg_pixmap[SELECTED] 		= "Panel/panel-bg.png"
+	bg_pixmap[INSENSITIVE] 		= "Panel/panel-bg.png"
+
+engine "pixmap"
+{
+	image
+	{
+		function	= HANDLE
+		recolorable	= TRUE
+		overlay_file	= "/Panel/panel-handle.png"
+		overlay_stretch	= FALSE
+		orientation	= VERTICAL
+	}
+
+	image
+	{
+		function	= HANDLE
+		recolorable	= TRUE
+		overlay_file	= "/Panel/panel-handle.png"
+		overlay_stretch	= FALSE
+		orientation	= HORIZONTAL
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		overlay_file	= "/Arrows/arrow-up.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+}
+}
+
+#############################################################
+#THESE DECLARATIONS MAKE SURE THE PANEL STILL USES PANEL STYLE
+#############################################################
+
+class "*Panel*Mail*" 			style "panel"
+class "*notif*" 			style "panel"
+class "*Notif*" 			style "panel"
+widget_class "*Panel*GtkToggleButton" 	style "panel"
+widget_class "*Panel*GtkButton" 	style "panel"
+widget_class "*.Panel*Button*GtkLabel" 	style "panel"
+widget_class "*.Panel*GtkLabel" 	style "panel"
+
+#############################################################
+# THANKS TO merlwiz79 FOR THESE FIXES
+#############################################################
+
+widget_class "*Netstatus*" 		style "panel"
+widget_class "*Tomboy*Tray*" 		style "panel"
+widget "*fast-user-switch*" 		style "panel"
+widget_class "*PanelToplevel*" 		style "panel"
+class "Xfce*Panel*" 			style "panel"
+widget_class "*Xfce*Panel*" 		style "panel"
+
+
+#############################################################
+#THIS MAKES THE APPLICATIONS PLACES SYSTEM MENU ON THE PANEL
+#USE PANEL STYLE
+#############################################################
+style "panelapplets" = "panel"
+{
+xthickness = 0
+ythickness = 0
+
+bg[SELECTED] = "#d9d9d9"
+
+}
+
+widget "*PanelWidget*" 			style "panelapplets"
+class "*PanelApplet*" 			style "panelapplets"
+widget_class "*Panel*Applet*"		style:highest "panelapplets"
+
+
+style "dictionary"
+{
+xthickness = 0
+ythickness = 0
+fg[NORMAL] = "#d9d9d9"
+bg[NORMAL] = "#0d0d0d"
+bg_pixmap[NORMAL] = "Panel/panel-bg.png"  #not working
+base[NORMAL] = "#000000"
+text[NORMAL] = "#d7d7d7"
+engine "clearlooks"
+{
+}
+}
+widget_class "*dict*Applet*Entry*" 			style:highest "dictionary"
+
+
+style "panelbar"
+{
+xthickness = 6
+ythickness = 6
+
+engine "pixmap"
+{
+	image
+	{
+		function	= BOX
+		state		= NORMAL
+		file		= "Panel/panel-button-inactive.png"
+		border		= { 13, 13 , 13 , 13}
+		stretch		= TRUE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= ACTIVE
+		file		= "Panel/panel-button-active.png"
+		border		= { 4 , 4 , 4 , 0}
+		stretch		= FALSE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= INSENSITIVE
+		file		= "Panel/panel-button-inactive.png"
+		border		= { 0 , 0 , 0 , 0}
+		stretch		= FALSE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= PRELIGHT
+		recolorable	= TRUE
+		file		= "Panel/prelight-effect.png"
+		border		= { 4 , 4 , 4 , 0}
+		stretch		= TRUE
+
+	}
+
+}
+
+}
+
+class "*Panel*MenuBar*"		style "panelbar"
+widget_class "*Panel*MenuBar*" style "panelbar"
+widget_class "*Panel*MenuBar*Item*" style:highest "panelbar"
+
+#############################################################
+
+style "panelbuttons"
+{
+ xthickness            			= 4
+ ythickness            			= 4
+
+  	bg[SELECTED]			= "#3d3d3d"
+
+	GtkWidget::focus_padding = 0
+
+	engine "pixmap" {
+
+#does anyone have a clue on how to rid the "flashy" effect when for example someone
+#writes to you on pidgin?????? to replace that effect with a pixmap would be great!
+
+	image
+	{
+		function        		= BOX
+		#shadow				= OUT
+		recolorable     		= TRUE
+		state				= PRELIGHT
+		detail				= "buttondefault"
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+		overlay_file			= "Panel/prelight-effect.png"
+		overlay_stretch			= TRUE
+		overlay_border			= {8,8,8,8}
+	}	
+      
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= NORMAL
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}
+		
+	image
+	{
+		function        		= BOX
+		shadow				= OUT
+		recolorable     		= TRUE
+		state				= PRELIGHT
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+		overlay_file			= "Panel/prelight-effect.png"
+		overlay_stretch			= TRUE
+		overlay_border			= {8,8,8,8}
+	}		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		shadow				= IN
+		state				= PRELIGHT
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+		overlay_file			= "Panel/prelight-effect.png"
+		overlay_stretch			= TRUE
+		overlay_border			= {8,8,8,8}
+	}
+		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= ACTIVE
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}  
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= INSENSITIVE
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	} 
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= SELECTED
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}  
+
+}
+
+}
+
+#############################################################
+#THESE DECLARATIONS MAKE SURE THE LAUNCHER EDITOR BUTTONS USE 
+#STANDARD BUTTONS STYLE AND NOT PANEL BUTTONS STYLE
+#############################################################
+
+
+widget_class "*Tasklist*" 		style:highest "panelbuttons"
+
+
+#############################################################
+
+style "panelbutton-select"
+{
+ xthickness            			= 4
+ ythickness            			= 4
+
+  	bg[SELECTED]			= "#3d3d3d"
+
+	GtkWidget::focus_padding = 0
+
+	engine "pixmap" {
+      
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= NORMAL
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}
+		
+	#image
+	#{
+	#	function        		= BOX
+	#	shadow				= OUT
+	#	recolorable     		= TRUE
+	#	state				= PRELIGHT
+	#	file            		= "Panel/panel-button-inactive.png"
+	#	border          		= { 8, 8, 8,8 }
+	#	stretch         		= TRUE
+	#	overlay_file			= "Panel/prelight-effect.png"
+	#	overlay_stretch			= TRUE
+	#	overlay_border			= {8,8,8,8}
+	#}		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		#shadow				= IN
+		state				= PRELIGHT
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+		overlay_file			= "Panel/prelight-effect.png"
+		overlay_stretch			= TRUE
+		overlay_border			= {8,8,8,8}
+	}
+		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= ACTIVE
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}  
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= INSENSITIVE
+		file            		= "Panel/panel-button-inactive.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	} 
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= SELECTED
+		file            		= "Panel/panel-button-active.png"
+		border          		= { 8, 8, 8,8 }
+		stretch         		= TRUE
+	}  
+
+}
+
+}
+
+widget_class "*Panel*Applet*Select*"	style "panelbutton-select"
+
+#############################################################
+# THANKS TO merlwiz79 FOR THESE FIXES
+#############################################################
+
+
+widget_class "*Xfce*Panel*.GtkToggleButton" 	style "panelbuttons"
+widget_class "*Xfce*NetkTasklist*GtkToggleButton" style "panelbuttons"
+widget_class "*Panel*.GtkToggleButton" 		style "panelbuttons"
+widget_class "*Banshee*" style "fix" 
+#############################################################
+
+widget 	"*dict*Applet*"			style "panelbuttons" #somehow this fixes the
+#dictionary button on the panel
+widget_class "*Panel*Applet*Button*"			style "panelbuttons"
+
+style "panelappletprogress" = "panel"
+{
+bg[NORMAL]= "#d9d9d9"
+
+engine "clearlooks"
+{
+}
+}
+widget_class "*Panel*ProgressBar*"		style "panelappletprogress" 
+
+#############################################################
+#THANKS TO TWROCK FOR THIS!
+#############################################################
+
+style "applet-text" = "panelbuttons"
+{
+fg[NORMAL] = "#d7d7d7"
+
+}
+ 
+style "volume-applet-text" = "panelbuttons"
+{
+fg[NORMAL] = "#000000"
+}
+
+
+widget_class "*CPUFreqApplet*"	style:highest "applet-text" #fixed volume range popup background
+widget_class "*Applet*Volume*" style "volume-applet-text" #GtkVolumeButton + and - colorfix
+
+#############################################################
+#various fixes for avant menues
+#############################################################
+#style "avant"
+#{
+#fg[NORMAL] = "#000000"
+#engine "clearlooks"
+#{
+#}
+#}
+
+#widget "*Avant*" style "avant"
+
+#############################################################
+#the workspace switcher
+#############################################################
+
+style "switcher"
+{
+
+xthickness = 0
+ythickness = 0
+
+fg[NORMAL] = "#a9a9a9"
+fg[SELECTED] = "#000000"
+#bg_pixmap[NORMAL] 		= "Panel/panel-bg.png"  #This isn't working???
+bg[NORMAL] = "#000000"
+bg[PRELIGHT]= "#a9a9a9"
+bg[SELECTED] = "#d9d9d9"
+engine "pixmap"
+{
+	image
+	{
+		function	= SHADOW
+		recolorable	= TRUE
+		file		= "/Shadows/shadow-none.png"
+		border		= {1,1,1,1}
+		stretch		= TRUE
+		}
+}
+
+}
+widget_class "*Pager*" style "switcher"
+widget_class "*Panel*Fish*" style "switcher"
+
+style "applet"
+{
+#bg[NORMAL] = "#000000"
+bg_pixmap[NORMAL] = "/Panel/panel-bg.png"
+}
+
+widget_class "*PanelApplet*" style "applet"
