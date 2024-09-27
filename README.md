@@ -10,7 +10,7 @@ ReVista theme -  Windows Vista theme for GTK / XFCE
 
 ## Installation Instructions
 - Copy the contents of `Themes` to `/usr/share/themes`
-- Copy the contents of `Icons` to `/usr/share/icons`
+- extract the contents of `Icons/ReVista.Zip` to `/usr/share/icons`
 - (optional) Copy `Scripts/lightdark.sh` (or `Scripts/lightdark-libadwaita.sh` when using dotfiles)  to `/usr/local/bin/lightdark`
 - (optional) Copy the contents of `configs` to `~/.local/config/`
 - (optional) Copy `Wallpaper` to `/wallpaper` and add `~/electron-wallpaper` to startup
